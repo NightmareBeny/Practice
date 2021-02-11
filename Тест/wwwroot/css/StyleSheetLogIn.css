@@ -1,0 +1,55 @@
+﻿header {
+    margin-top:-20px;
+    background-color: #34d174;
+    width:100%;
+    height:120px;
+}
+body {
+    margin: 0px;
+}
+footer {
+    position:absolute; bottom:0px;
+    width: 100%;
+    background-color: #34d174;
+}
+h2 {
+    padding-top:51px;
+    text-align: center;
+}
+h3 {
+    text-align: center;
+}
+h4{
+    text-align:right; padding-right:25px;
+}
+form {
+    font-family: 'Roboto', sans-serif;
+    position:absolute;
+    top: 30%;
+    left: 42%; 
+}
+div{
+    margin-bottom:20px
+}
+label{
+    display:block;
+}
+button {
+    outline:none;
+    width: 200px;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+[type="text"]{
+    width:190px
+}
+button:hover {
+    transition-duration: 0.7s;
+    background-color: #c3cac6
+}
+.mail{
+    width:190px
+}
+
+

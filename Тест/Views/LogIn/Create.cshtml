@@ -1,0 +1,45 @@
+﻿@model Тест.Models.LogIn
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="~/css/StyleSheetLogIn.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="~/img/faceicon.ico" type="image/x-icon" />
+    <title>Регистрация</title>
+</head>
+<body>
+    <header>
+        <h2>Коллеги, введите свои данные, для прохождения теста.</h2>
+    </header>
+    <main>
+        <form asp-controller="LogIn" asp-action="Create">
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" placeholder="Введите своё имя"/>
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div>
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" placeholder="Введите свою фамилию"/>
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" placeholder="Введите свою почту" class="mail"/>
+                <span asp-validation-for="Email">@ViewBag.Message</span>
+            </div>
+                <button>Зарегистрироваться</button>
+        </form>
+    </main>
+    <footer>
+        <h3>ОАО "ЕГЭматика"</h3>
+        <h4>&copy; CCG Company @DateTime.Now.Year</h4>
+    </footer>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>
+
