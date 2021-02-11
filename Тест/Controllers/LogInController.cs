@@ -41,11 +41,15 @@ namespace Тест.Controllers
             if (value == "1") answer += 1;
             //Берём последнюю запись, т.е. нынешнего пользователя
             LogIn user = users.Last();
-            //вычисляем поля верных и неверных ответов и обновляем БД
-            user.True = answer; user.False = 10 - answer;
-            _context.Update(user);
-            //сохраняем изменения
-            await _context.SaveChangesAsync();
+            //Т.к. пользователь впервый раз проходит тест, то его поля верных и неверных ответов пока равны 0, после его ответа они изменят значение, но если он вернётся и попытается 
+            //исправить свои ответы, ему это не удастся, т.к. эти поля уже будут заполнены ответами и он просто вернётся на страницу регистрации
+            if (user.False == 0 && user.True == 0)
+            {
+                //вычисляем поля верных и неверных ответов и обновляем БД
+                user.True = answer; user.False = 10 - answer;
+                _context.Update(user);
+                //сохраняем изменения
+                await _context.SaveChangesAsync();
                 //отправляем письмо
                 var emailMessage = new MimeMessage();
                 emailMessage.From.Add(new MailboxAddress("Администрация", "myrabota269@gmail.com"));
@@ -63,6 +67,7 @@ namespace Тест.Controllers
                     await client.SendAsync(emailMessage);
                     await client.DisconnectAsync(true);
                 }
+            }
             return RedirectToAction(nameof(Create));
             
         }
